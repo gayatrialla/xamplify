@@ -1,0 +1,315 @@
+package xamplifypackage.xamplifyproject;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class AppTest {
+	
+	  WebDriver driver = WebDriverConfig.getInstance();
+
+		Properties properties = PropertyFile.readPropertyFile("datafile.properties");
+		
+	
+	@BeforeTest
+	public void start() throws InterruptedException {
+		/*System.setProperty("webdriver.chrome.driver","D:\\selenium\\chromedriver2.exe");
+		driver =  new ChromeDriver();*/
+	
+	 
+	driver.get(properties.getProperty("baseUrl"));
+	
+
+	
+	driver.manage().window().maximize();
+	
+	Thread.sleep(3000);
+	}
+	
+		
+		
+		
+		
+		@Test
+	public void login() throws InterruptedException, SQLException {
+
+		driver.findElement(By.xpath(properties.getProperty("loginclick"))).click();
+		Thread.sleep(5000);
+		driver.findElement(By.id(properties.getProperty("email"))).sendKeys(properties.getProperty("user.name"));
+		driver.findElement(By.id(properties.getProperty("password"))).sendKeys(properties.getProperty("user.password"));
+		driver.findElement(By.id(properties.getProperty("signin"))).click();
+		Thread.sleep(5000);		
+	}
+		
+		
+		
+			@Test(priority=3,enabled=true)
+		public void email_temp() throws InterruptedException, IOException {
+				Thread.sleep(5000);
+			WebElement element=driver.findElement(By.xpath(properties.getProperty("email_hover")));	
+			Thread.sleep(5000);                            
+		 Actions action = new Actions(driver);
+		 action.moveToElement(element).perform();
+			WebElement subelement= driver.findElement(By.xpath(properties.getProperty("create_email_temp")));
+			action.moveToElement(subelement);
+			action.click();
+			action.perform();
+				Thread.sleep(5000);
+					
+				
+				driver.findElement(By.xpath(properties.getProperty("default"))).click();
+					Thread.sleep(5000);
+					Actions default1=new Actions(driver);
+					WebElement def_ele=driver.findElement(By.xpath(properties.getProperty("default1_path")));
+					action.moveToElement(def_ele).build().perform();
+					def_ele.click();
+					Thread.sleep(8000);
+					driver.findElement(By.xpath(properties.getProperty("default1_preview"))).click();
+					Thread.sleep(5000);
+					
+					Actions default2=new Actions(driver);
+					WebElement def_ele2=driver.findElement(By.xpath(properties.getProperty("default2_path")));
+					action.moveToElement(def_ele2).build().perform();
+					def_ele2.click();
+					Thread.sleep(8000);
+					driver.findElement(By.xpath(properties.getProperty("default2_preview"))).click();
+					Thread.sleep(5000);
+					
+					
+					Actions default3=new Actions(driver);
+					WebElement def_ele3=driver.findElement(By.xpath(properties.getProperty("default3_path")));
+					action.moveToElement(def_ele3).build().perform();
+					def_ele3.click();
+					Thread.sleep(8000);
+					driver.findElement(By.xpath(properties.getProperty("default3_preview"))).click();
+					Thread.sleep(5000);
+					
+					
+					
+					
+					
+					WebElement upld_cstm=driver.findElement(By.xpath(properties.getProperty("upload_custom")));
+				upld_cstm.click();
+		        Thread.sleep(3000);
+		      Actions upld_tmp1= new Actions(driver);
+		      WebElement we = driver.findElement(By.xpath(properties.getProperty("upld_create_temp")));
+		      action.moveToElement(we).build().perform();
+		      we.click();
+		        Thread.sleep(5000);
+		         driver.findElement(By.xpath(properties.getProperty("upld_tmp_name"))).sendKeys(properties.getProperty("upld_tmp_name_senddata"));
+		        Thread.sleep(5000);
+		        driver.findElement(By.xpath(properties.getProperty("upld_custmfile_tmp"))).click();
+		        Thread.sleep(5000);
+		        Runtime.getRuntime().exec("C:\\Users\\lakshmig\\Documents\\upld_cstm1.exe");
+		        Thread.sleep(4000);
+		        driver.findElement(By.xpath(properties.getProperty("upldcustm_save"))).click();
+		        Thread.sleep(5000);
+		        
+		        
+		        WebElement upl_reg=driver.findElement(By.xpath(properties.getProperty("emailhover2")));	
+				Thread.sleep(5000);  
+				Actions action_reg = new Actions(driver);
+				action_reg.moveToElement(upl_reg).perform();
+				WebElement subele_reg= driver.findElement(By.xpath(properties.getProperty("create_email_temp2")));
+				action_reg.moveToElement(subele_reg);
+				action_reg.click();
+				action_reg.perform();
+					Thread.sleep(5000);
+		         WebElement upl_reg2=driver.findElement(By.xpath(properties.getProperty("upld_custom2")));
+			        upl_reg2.click();
+			        Thread.sleep(5000);
+			        Actions upld_tmp2= new Actions(driver);
+				      WebElement we_up = driver.findElement(By.xpath(properties.getProperty("regular_create_temp")));
+				      upld_tmp2.moveToElement(we_up).build().perform();
+				      we_up.click();
+				      Thread.sleep(5000);
+			        driver.findElement(By.xpath(properties.getProperty("regular_temp_name"))).sendKeys(properties.getProperty("regular_temp_senddata"));
+			        Thread.sleep(5000);
+			        driver.findElement(By.xpath(properties.getProperty("regular_upld_file"))).click();
+			        Thread.sleep(5000);
+			        Runtime.getRuntime().exec("C:\\Users\\lakshmig\\Documents\\upld_cstm1.exe");
+			        Thread.sleep(4000);
+			        driver.findElement(By.xpath(properties.getProperty("regular_temp_save"))).click();
+			        Thread.sleep(5000);
+		}
+			
+			@Test(priority=4,enabled=true)
+			public void manage_template() throws InterruptedException {
+				
+				Thread.sleep(5000);
+				WebElement element=driver.findElement(By.xpath(properties.getProperty("email-hover-2")));
+				 Actions action = new Actions(driver);
+				 action.moveToElement(element).perform();
+				 WebElement mnge_ele= driver.findElement(By.xpath(properties.getProperty("mnge_template")));
+					action.moveToElement(mnge_ele);
+					action.click();
+					action.perform();
+						Thread.sleep(5000);
+						driver.findElement(By.xpath(properties.getProperty("mnge_temp_preview"))).click();
+						Thread.sleep(5000);
+					
+						driver.findElement(By.xpath(properties.getProperty("mnge_temp_preview_close"))).click();
+						Thread.sleep(5000);
+						
+							driver.findElement(By.xpath(properties.getProperty("mnge_edit_temp"))).click();
+							Thread.sleep(5000);
+							
+					driver.findElement(By.xpath(properties.getProperty("tmpname_updte"))).sendKeys("-1");
+					Thread.sleep(5000);
+					driver.findElement(By.xpath(properties.getProperty("e_temp_update_button"))).click();
+					Thread.sleep(5000);
+					driver.findElement(By.xpath(properties.getProperty("e_gridview"))).click();
+
+					WebElement ele_drpdwn_sort=driver.findElement(By.xpath(properties.getProperty("e_sort_drpdwn")));
+					ele_drpdwn_sort.click();
+					Select namea_z=new Select(ele_drpdwn_sort);
+					Thread.sleep(8000);
+					namea_z.selectByIndex(1);
+					Thread.sleep(15000);
+					namea_z.selectByIndex(2);
+					Thread.sleep(15000);
+					namea_z.selectByIndex(3);
+					Thread.sleep(15000);
+					namea_z.selectByIndex(4);
+					Thread.sleep(15000);
+					driver.findElement(By.xpath(properties.getProperty("e_search_temp"))).sendKeys("basic");
+					Thread.sleep(15000);
+					driver.findElement(By.xpath(properties.getProperty("e_clear"))).click();
+					Thread.sleep(5000);	
+					driver.findElement(By.xpath(properties.getProperty("e_search"))).click();
+					Thread.sleep(10000);
+				
+				driver.findElement(By.xpath(properties.getProperty("e_m_basic"))).click();
+				Thread.sleep(15000);
+				
+				driver.findElement(By.xpath(properties.getProperty("e_m_video"))).click();
+				Thread.sleep(5000);
+				
+				driver.findElement(By.xpath(properties.getProperty("e_m_uploaded"))).click();
+				Thread.sleep(5000);
+				
+				driver.findElement(By.xpath(properties.getProperty("e_m_partner"))).click();
+				Thread.sleep(5000);
+				
+				driver.findElement(By.xpath(properties.getProperty("e_m_emailcobranding"))).click();
+				Thread.sleep(5000);
+				
+				driver.findElement(By.xpath(properties.getProperty("e_m_videocobranding"))).click();
+				
+				Thread.sleep(5000);
+				
+				
+				
+				
+			}
+		
+			
+		
+		}
+
+
+==============================================================================================================================================
+
+
+
+
+
+#emailtemplates
+email_hover=//a[@class='hidden-xs']
+create_email_temp=//span[contains(text(),'Create Email Template')]
+default=/html/body/app-root/app-home/div/div/app-select-template/div[1]/div[2]/div/div/div[1]/div/div[1]/div/ul/li[6]
+default1_path=/html/body/app-root/app-home/div/div/app-select-template/div[1]/div[2]/div/div/div[2]/div/div[1]/div/div/a/i
+default1_preview=//*[@id=\"show_email_template_preivew\"]/div/div/div[1]/button/i
+default2_path=/html[1]/body[1]/app-root[1]/app-home[1]/div[1]/div[1]/app-select-template[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/a[1]/i[1]
+default2_preview=//*[@id=\"show_email_template_preivew\"]/div/div/div[1]/button/i
+default3_path=/html/body/app-root/app-home/div/div/app-select-template/div[1]/div[2]/div/div/div[2]/div/div[3]/div/div/a/i
+default3_preview=//*[@id=\"show_email_template_preivew\"]/div/div/div[1]/button/i
+upload_custom=//li[contains(text(),'Upload Custom')]
+upld_create_temp=/html[1]/body[1]/app-root[1]/app-home[1]/div[1]/div[1]/app-select-template[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/i[1]
+upld_tmp_name=//input[@id='templateName']
+upld_tmp_name_senddata=template_g11
+upld_custmfile_tmp=//*[@id=\"upload-file\"]
+upldcustm_save=//*[@id=\"save\"]
+emailhover2=//a[@class='hidden-xs']
+create_email_temp2=//span[contains(text(),'Create Email Template')]
+upld_custom2=//li[contains(text(),'Upload Custom')]
+regular_create_temp=/html/body/app-root/app-home/div/div/app-select-template/div[1]/div[2]/div/div/div[2]/div/div[2]/div/div/a/i
+regular_temp_name=//*[@id=\"templateName\"]
+regular_temp_senddata=template_lg1
+regular_upld_file=//*[@id=\"upload-file\"]
+regular_temp_save=//*[@id=\"save\"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#manage_template
+email-hover-2=//a[@class='hidden-xs']
+mnge_template=//span[contains(text(),'Manage Email Templates')]
+mnge_temp_preview=//tbody//tr[2]//td[6]//div[1]//a[2]//i[1]
+mnge_temp_preview_close=//*[@id=\"show_email_template_preivew\"]/div/div/div[1]/button/i
+mnge_edit_temp=/html[1]/body[1]/app-root[1]/app-home[1]/div[1]/div[1]/app-manage-template[1]/div[1]/div[3]/div[1]/div[1]/section[1]/div[1]/table[1]/tbody[1]/tr[2]/td[6]/div[1]/a[1]/i[1]
+tmpname_updte=//input[@id='templateName']
+e_temp_update_button=//button[@type='button']
+e_gridview=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[2]/div/span[2]/i
+e_sort_drpdwn=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[2]/div/div/div[1]/select
+e_search_temp=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[2]/div/div/div[2]/div/input
+e_clear=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[2]/div/div/div[2]/div/button[2]/i
+e_search=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[2]/div/div/div[2]/div/button[1]
+e_m_basic=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[1]/div/ul/li[2]
+e_m_video=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[1]/div/ul/li[3]
+e_m_uploaded=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[1]/div/ul/li[4]
+e_m_partner=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[1]/div/ul/li[5]
+e_m_emailcobranding=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[1]/div/ul/li[6]
+e_m_videocobranding=/html/body/app-root/app-home/div/div/app-manage-template/div/div[3]/div/div/div[1]/div/div[1]/div/ul/li[7]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+	
+
+
