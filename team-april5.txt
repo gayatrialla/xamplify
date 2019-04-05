@@ -1,0 +1,98 @@
+package xamplifyLive;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class Team {
+	 WebDriver driver = Instance.getInstance();
+	 
+		Properties properties = PropertiesFile.readPropertyFile("datafile.properties");
+
+@Test(priority=45,enabled=true)
+
+public void team() throws InterruptedException, IOException, SQLException
+{
+	
+	//driver.get("https://release.xamplify.io/home/dashboard/welcome");
+
+	driver.findElement(By.xpath(properties.getProperty("vteam"))).click();
+	Thread.sleep(3000);
+		driver.findElement(By.xpath(properties.getProperty("vdwnld_tmplte"))).click();
+		driver.findElement(By.xpath(properties.getProperty("vadd_member"))).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath(properties.getProperty("vadd_tm_first"))).sendKeys("lucky");
+		driver.findElement(By.xpath(properties.getProperty("vadd_tm_last"))).sendKeys("a");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
+		DatabaseQueries data = new DatabaseQueries();
+		String queryt = properties.getProperty("query.getCampaignNamesByOrganizationId").replaceAll(":emailId",properties.getProperty("user.name"));
+		List<String> campaignNames = data.listNames(queryt, "campaign_name");
+		String campaignNameFromProp = properties.getProperty("write_campaign").toLowerCase();
+		
+		driver.findElement(By.name(properties.getProperty("ecampaignName"))).sendKeys(properties.getProperty("write_campaign"));	
+		
+		Thread.sleep(5000);
+		if(campaignNames.indexOf(campaignNameFromProp)>-1) {
+		driver.findElement(By.name(properties.getProperty("ecampaignName"))).clear();
+		driver.findElement(By.name(properties.getProperty("ecampaignName"))).sendKeys(properties.getProperty("write_campaign")+"_"+System.currentTimeMillis());
+		Thread.sleep(10000);
+		}
+		Thread.sleep(1000);
+			driver.findElement(By.xpath("//*[@id=\"campaignDetailsForm\"]/div/div/div/div/div[2]/div/div/div/div[1]/switch/div/div/span[3]")).click();
+				
+		
+		*/
+		
+		
+		
+		driver.findElement(By.xpath(properties.getProperty("vtm_mail"))).sendKeys("gabcd@gmail11.com");
+		
+		
+		
+		
+		
+		driver.findElement(By.xpath(properties.getProperty("vtm_mail_add"))).click();
+		driver.findElement(By.xpath(properties.getProperty("vtm_checkall"))).click();
+		driver.findElement(By.xpath(properties.getProperty("vtm_save"))).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("/html/body/app-root/app-home/div/div/app-table-editable/div/div[4]/div[1]/section/div[1]")).click();
+		
+		
+		
+		   Runtime.getRuntime().exec("C:\\Users\\lakshmig\\Desktop\\team-csv.exe");
+	        Thread.sleep(7000);
+	        driver.findElement(By.xpath(properties.getProperty("vtm_upldcustm_save"))).click();
+	        Thread.sleep(5000);
+	
+		
+		
+		
+		driver.findElement(By.xpath(properties.getProperty("vtm_delete"))).click();
+	
+				Select tdropdown = new Select(driver.findElement(By.xpath("//*[@id=\"org-id\"]")));
+				Thread.sleep(3000);
+				tdropdown.selectByVisibleText("dtejashwini@stratapps.com");
+				Thread.sleep(3000);
+				driver.findElement(By.xpath("//*[@id=\"delete-team-member-modal\"]/div/div/div[3]/button[2]")).click();
+				
+		
+		
+		
+}
+}
